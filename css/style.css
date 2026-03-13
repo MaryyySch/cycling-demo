@@ -1,0 +1,172 @@
+/* =================================
+   CENTRAL COLOR SYSTEM
+================================= */
+
+:root{
+
+--brand-primary:#007bff;
+--brand-dark:#111111;
+--brand-success:#00c853;
+--brand-danger:#000000;
+--brand-light:#f8f9fa;
+
+--bs-link-color:#ff4d00;
+--bs-link-hover-color:#c83700;
+
+/* Bootstrap Overrides */
+
+--bs-primary:var(--brand-primary);
+--bs-primary-rgb:255,77,0;
+
+--bs-success:var(--brand-success);
+--bs-danger:var(--brand-danger);
+
+--bs-dark:var(--brand-dark);
+--bs-light:var(--brand-light);
+
+
+/* Danger Farbe */
+
+--bs-danger: #FFF005;
+--bs-danger-rgb: 255,240,5;
+
+
+/* optional: bessere Lesbarkeit */
+
+--bs-danger-text-emphasis: #000000;
+--bs-danger-bg-subtle: #fffcc2;
+--bs-danger-border-subtle: #fff566;
+
+
+}
+
+
+
+
+/* =================================
+   GLOBAL STYLING
+================================= */
+
+body{
+
+background:#f8f9fa;
+
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+
+}
+
+a{
+color:var(--bs-link-color);
+font-weight: bold;
+text-decoration: none;
+}
+
+a:hover{
+color:var(--bs-link-hover-color);
+}
+
+
+
+/* =================================
+   NAVBAR
+================================= */
+
+.navbar{
+
+background:var(--brand-dark);
+
+}
+
+.navbar-brand{
+
+font-weight:600;
+
+}
+
+
+/* =================================
+   COURSE CARDS
+================================= */
+
+.card{
+
+border:none;
+
+transition:all .2s ease;
+
+}
+
+.card:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+
+/* =================================
+   COURSE STATUS
+================================= */
+
+.course-free{
+
+color:var(--brand-success);
+
+}
+
+.course-full{
+
+color:var(--brand-danger);
+
+font-weight:600;
+
+}
+
+
+/* =================================
+   BUTTON IMPROVEMENTS
+================================= */
+
+.btn-primary{
+
+background:var(--brand-primary);
+
+border-color:var(--brand-primary);
+
+}
+
+.btn-primary:hover{
+
+background:#e64000;
+
+border-color:#e64000;
+
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+footer{
+
+background:var(--brand-dark);
+
+color:white;
+
+}
+
+footer a{
+
+color:white;
+
+opacity:.8;
+
+}
+
+footer a:hover{
+
+opacity:1;
+
+}
