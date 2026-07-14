@@ -49,7 +49,6 @@ localStorage.setItem("kurs_"+kurs,JSON.stringify(liste))
 
 
 const container = document.getElementById("courseContainer")
-const tableBody = document.getElementById("courseTableBody")
 
 
 courses.forEach(course => {
@@ -58,7 +57,7 @@ container.innerHTML += `
 
 <div class="col-lg-4 col-md-6">
 
-<div class="card shadow">
+<div class="card shadow" id="card-${course.id}">
 
 <div class="card-body">
 
@@ -104,21 +103,7 @@ Teilnehmerliste
 
 </div>
 
-
 `
-
-if(tableBody){
-tableBody.innerHTML += `
-<tr id="row-${course.id}">
-<td id="mine-${course.id}">⬜</td>
-<td><strong>${course.name}</strong></td>
-<td>${course.date}</td>
-<td>${course.time}</td>
-<td id="table-count-${course.id}"></td>
-<td id="status-${course.id}"></td>
-<td><button class="btn btn-sm btn-primary anmelden-btn" data-kurs="${course.id}">Anmelden</button></td>
-</tr>`
-}
 
 })
 
@@ -136,26 +121,6 @@ if(count)
 
 count.innerText = liste.length + " / " + maxTeilnehmer + " Plätze belegt"
 
-const tc=document.getElementById("table-count-"+course.id)
-if(tc) tc.innerText=liste.length+"/"+maxTeilnehmer
-
-const st=document.getElementById("status-"+course.id)
-if(st){
- if(liste.length>=maxTeilnehmer) st.innerHTML='<span class="badge bg-danger">🔴 Voll</span>';
- else if(liste.length>=maxTeilnehmer-3) st.innerHTML='<span class="badge bg-warning text-dark">🟡 Fast voll</span>';
- else st.innerHTML='<span class="badge bg-success">🟢 Frei</span>';
-}
-
-const mine=document.getElementById("mine-"+course.id)
-const row=document.getElementById("row-"+course.id)
-if(mine){
- const me=liste.includes(currentUser)
- mine.innerHTML=me?"✅":"⬜"
- if(row){
-   row.classList.toggle("table-success",me)
- }
-}
-
 })
 
 }
@@ -170,13 +135,23 @@ const kurs = box.dataset.kurs
 
 const liste = getTeilnehmer(kurs)
 
+const card = document.getElementById("card-"+kurs)
+
 if(liste.includes(currentUser)){
 
 box.classList.remove("d-none")
 
+if(card){
+card.classList.add("card-angemeldet")
+}
+
 }else{
 
 box.classList.add("d-none")
+
+if(card){
+card.classList.remove("card-angemeldet")
+}
 
 }
 
