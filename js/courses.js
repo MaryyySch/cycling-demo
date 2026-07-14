@@ -109,6 +109,7 @@ Teilnehmerliste
 
 if(tableBody){
 tableBody.innerHTML += `
+<tr id="row-${course.id}">
 <td id="mine-${course.id}">⬜</td>
 <td><strong>${course.name}</strong></td>
 <td>${course.date}</td>
