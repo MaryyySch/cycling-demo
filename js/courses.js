@@ -58,7 +58,7 @@ container.innerHTML += `
 
 <div class="col-lg-4 col-md-6">
 
-<div class="card shadow" id="card-${course.id}">
+<div class="card shadow h-100" id="card-${course.id}">
 
 <div class="card-body">
 
