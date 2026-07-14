@@ -58,7 +58,7 @@ container.innerHTML += `
 
 <div class="col-lg-4 col-md-6">
 
-<div class="card shadow">
+<div class="card shadow" id="card-${course.id}">
 
 <div class="card-body">
 
@@ -116,7 +116,12 @@ tableBody.innerHTML += `
 <td>${course.time}</td>
 <td id="table-count-${course.id}"></td>
 <td id="status-${course.id}"></td>
-<td><button class="btn btn-sm btn-primary anmelden-btn" data-kurs="${course.id}">Anmelden</button></td>
+<td id="table-action-${course.id}">
+    <button class="btn btn-sm btn-primary anmelden-btn"
+        data-kurs="${course.id}">
+        Anmelden
+    </button>
+</td>
 </tr>`
 }
 
@@ -164,33 +169,55 @@ if(mine){
 
 function updateUserButtons(){
 
-document.querySelectorAll(".user-actions").forEach(box=>{
+    document.querySelectorAll(".user-actions").forEach(box=>{
 
-const kurs = box.dataset.kurs
+        const kurs = box.dataset.kurs;
+        const liste = getTeilnehmer(kurs);
+        const card = document.getElementById("card-"+kurs);
 
-const liste = getTeilnehmer(kurs)
+        const tableAction = document.getElementById("table-action-"+kurs);
 
-const card = document.getElementById("card-"+kurs)
+        if(liste.includes(currentUser)){
 
-if(liste.includes(currentUser)){
+            // Kartenansicht
+            box.classList.remove("d-none");
 
-box.classList.remove("d-none")
+            if(card){
+                card.classList.add("card-angemeldet");
+            }
 
-if(card){
-card.classList.add("card-angemeldet")
-}
+            // Tabellenbutton
+            if(tableAction){
+                tableAction.innerHTML = `
+                    <button class="btn btn-sm btn-outline-danger abmelden-btn"
+                        data-kurs="${kurs}">
+                        Abmelden
+                    </button>
+                `;
+            }
 
-}else{
+        }else{
 
-box.classList.add("d-none")
+            // Kartenansicht
+            box.classList.add("d-none");
 
-if(card){
-card.classList.remove("card-angemeldet")
-}
+            if(card){
+                card.classList.remove("card-angemeldet");
+            }
 
-}
+            // Tabellenbutton
+            if(tableAction){
+                tableAction.innerHTML = `
+                    <button class="btn btn-sm btn-primary anmelden-btn"
+                        data-kurs="${kurs}">
+                        Anmelden
+                    </button>
+                `;
+            }
 
-})
+        }
+
+    });
 
 }
 
