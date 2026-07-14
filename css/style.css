@@ -123,6 +123,18 @@ font-weight:600;
 
 }
 
+.card-angemeldet{
+    background:#eaf8ef;
+    border:2px solid #198754;
+    transition:all .2s ease;
+}
+
+.card-angemeldet .card-title::after{
+    content:"  ✓";
+    color:#198754;
+    font-weight:bold;
+}
+
 
 /* =================================
    BUTTON IMPROVEMENTS
