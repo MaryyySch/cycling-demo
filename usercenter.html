@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usercenter</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+<div class="d-flex justify-content-between align-items-center mb-4">
+<h2>Mein Benutzerkonto</h2>
+<a href="index.html" class="btn btn-outline-secondary">← Zur Startseite</a>
+</div>
+<div class="card shadow">
+<div class="card-header bg-primary text-white"><h4 class="mb-0">Persönliche Daten</h4></div>
+<div class="card-body">
+<form id="userForm">
+<div class="row">
+<div class="col-md-6 mb-3"><label>Vorname *</label><input required class="form-control" id="vorname"></div>
+<div class="col-md-6 mb-3"><label>Nachname *</label><input required class="form-control" id="nachname"></div>
+<div class="col-md-6 mb-3"><label>E-Mail *</label><input required type="email" class="form-control" id="email"></div>
+<div class="col-md-6 mb-3"><label>Telefon *</label><input required class="form-control" id="telefon"></div>
+<div class="col-md-6 mb-3"><label>Geburtsdatum *</label><input required type="date" class="form-control" id="geburtstag"></div>
+<div class="col-md-6 mb-3"><label>Kontoinhaber *</label><input required class="form-control" id="kontoinhaber"></div>
+<div class="col-md-8 mb-3"><label>Straße *</label><input required class="form-control" id="strasse"></div>
+<div class="col-md-4 mb-3"><label>Hausnummer *</label><input required class="form-control" id="hausnummer"></div>
+<div class="col-md-4 mb-3"><label>PLZ *</label><input required class="form-control" id="plz"></div>
+<div class="col-md-8 mb-3"><label>Ort *</label><input required class="form-control" id="ort"></div>
+<div class="col-12 mb-3"><label>IBAN *</label><input required class="form-control" id="iban"></div>
+<hr class="my-4"><h5>Passwort ändern</h5>
+<div class="col-md-4 mb-3"><label>Aktuelles Passwort</label><input type="password" class="form-control" id="oldPassword"></div>
+<div class="col-md-4 mb-3"><label>Neues Passwort</label><input type="password" class="form-control" id="newPassword"></div>
+<div class="col-md-4 mb-3"><label>Passwort wiederholen</label><input type="password" class="form-control" id="newPassword2"></div>
+<div class="col-12 mt-3"><button class="btn btn-primary">Änderungen speichern</button></div>
+</div></form></div></div></div>
+<script>
+const form=document.getElementById("userForm");
+const user=JSON.parse(localStorage.getItem("userData")||"{}");
+["vorname","nachname","email","telefon","geburtstag","kontoinhaber","strasse","hausnummer","plz","ort","iban"].forEach(id=>{const e=document.getElementById(id); if(e)e.value=user[id]||"";});
+form.addEventListener("submit",e=>{
+e.preventDefault();
+const daten={vorname:vorname.value,nachname:nachname.value,email:email.value,telefon:telefon.value,geburtstag:geburtstag.value,kontoinhaber:kontoinhaber.value,strasse:strasse.value,hausnummer:hausnummer.value,plz:plz.value,ort:ort.value,iban:iban.value,passwort:user.passwort||""};
+if(newPassword.value){
+if(oldPassword.value!==daten.passwort){alert("Aktuelles Passwort ist nicht korrekt.");return;}
+if(newPassword.value!==newPassword2.value){alert("Die neuen Passwörter stimmen nicht überein.");return;}
+daten.passwort=newPassword.value;
+}
+localStorage.setItem("userData",JSON.stringify(daten));
+alert("Daten erfolgreich gespeichert.");
+});
+</script>
+</body></html>
