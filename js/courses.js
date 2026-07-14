@@ -104,28 +104,12 @@ Teilnehmerliste
 
 </div>
 
-`
-
-
-
-tableBody.innerHTML += `
-
-<tr id="row-${course.id}">
-<td>${course.name}</td>
-<td>${course.date}</td>
-<td>${course.time}</td>
-<td>Trainerteam</td>
-<td id="table-count-${course.id}">0 / ${maxTeilnehmer}</td>
-<td id="status-${course.id}"><span class="badge bg-success">Frei</span></td>
-<td>
-<button class="btn btn-primary btn-sm anmelden-btn"
-data-kurs="${course.id}">
-Anmelden
-</button>
-</td>
-</tr>
 
 `
+
+if(tableBody){
+ tableBody.innerHTML += `\n<tr>\n<td>${course.name}</td>\n<td>${course.date}</td>\n<td>${course.time}</td>\n<td id="table-count-${course.id}"></td>\n<td id="status-${course.id}"></td>\n<td><button class="btn btn-primary btn-sm anmelden-btn" data-kurs="${course.id}">Anmelden</button></td>\n</tr>`;
+}
 
 })
 
@@ -139,37 +123,24 @@ const liste = getTeilnehmer(course.id)
 
 const count = document.getElementById("count-"+course.id)
 
-if(count){
+if(count)
 count.innerText = liste.length + " / " + maxTeilnehmer + " Plätze belegt"
-}
 
 const tableCount=document.getElementById("table-count-"+course.id)
-
 if(tableCount){
 tableCount.innerText=liste.length+" / "+maxTeilnehmer
 }
 
 const status=document.getElementById("status-"+course.id)
-
 if(status){
-
 if(liste.length>=maxTeilnehmer){
-
 status.innerHTML='<span class="badge bg-danger">Ausgebucht</span>'
-
 }else if(liste.length>=maxTeilnehmer-3){
-
 status.innerHTML='<span class="badge bg-warning text-dark">Fast voll</span>'
-
 }else{
-
 status.innerHTML='<span class="badge bg-success">Frei</span>'
-
 }
-
 }
-
-})
 
 })
 
@@ -309,4 +280,3 @@ ul.appendChild(li)
 updateCounts()
 
 updateUserButtons()
-
