@@ -146,9 +146,9 @@ if(tc) tc.innerText=liste.length+"/"+maxTeilnehmer
 
 const st=document.getElementById("status-"+course.id)
 if(st){
- if(liste.length>=maxTeilnehmer) st.innerHTML='<span class="badge bg-danger">🔴 Voll</span>';
- else if(liste.length>=maxTeilnehmer-3) st.innerHTML='<span class="badge bg-warning text-dark">🟡 Fast voll</span>';
- else st.innerHTML='<span class="badge bg-success">🟢 Frei</span>';
+ if(liste.length>=maxTeilnehmer) st.innerHTML='<span class="badge bg-danger">Voll</span>';
+ else if(liste.length>=maxTeilnehmer-3) st.innerHTML='<span class="badge bg-warning text-dark">Fast voll</span>';
+ else st.innerHTML='<span class="badge bg-success">Frei</span>';
 }
 
 const mine=document.getElementById("mine-"+course.id)
